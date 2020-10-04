@@ -10,16 +10,17 @@ set showmatch
 set sw=2
 set relativenumber
 set laststatus=2
-set noshowmode
+" set expandtab smarttab
+" set foldmethod=indent
 
 so ~/config/.vim/plugins.vim
 so ~/config/.vim/plugin-config.vim
 so ~/config/.vim/maps.vim
 
-colorscheme gruvbox
-let g:gruvbox_contrast_dark = "hard"
-let g:deoplete#enable_at_startup = 1
-let g:jsx_ext_required = 1
+" colorscheme Tomorrow-Night-Bright
+" let g:gruvbox_contrast_dark = "hard"
+" let g:deoplete#enable_at_startup = 1
+" let g:jsx_ext_required = 1
 
 " Javascript
 autocmd BufRead *.js set filetype=javascript.jsx

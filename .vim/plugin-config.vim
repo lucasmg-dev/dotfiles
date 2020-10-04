@@ -1,5 +1,14 @@
 " HTML, JSX
+" Resume latest coc list
 let g:closetag_filenames = '*.html,*.js,*.jsx,*.ts,*.tsx'
+
+" For Neovim 0.1.3 and 0.1.4
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" Or if you have Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
 
 "  nerdtree
 let NERDTreeShowHidden=1
@@ -21,9 +30,11 @@ let g:coc_global_extensions = [
   \ 'coc-json', 
   \ ]
 
+let g:indentLine_char = '|'
+let g:indentLine_setConceal = 0
 
 " Linter
-let g:syntastic_javascript_checkers = ['standard']
+let g:syntastic_javascript_checkers = ['eslint']
 " autocmd bufwritepost *.js silent !standard --fix %
 " set autoread
 
@@ -35,7 +46,7 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -79,8 +90,6 @@ nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -110,3 +119,34 @@ let g:ycm_add_preview_to_completeopt = 0
 
 vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
+
+command! -bang -nargs=? -complete=dir GFiles
+  \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+
+command! -bang -nargs=? -complete=dir Filesset expandtab smarttab
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+let $FZF_DEFAULT_OPTS='--layout=reverse'
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+function! FloatingFZF()
+  let buf = nvim_create_buf(v:false, v:true)
+  call setbufvar(buf, '&signcolumn', 'no')
+  let height = float2nr((&lines - 3) / 2)
+  let width = float2nr(&columns - (&columns * 2 / 10))
+  let col = float2nr((&columns - width) / 2)
+  let row = float2nr((&lines - height) / 2)
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': row,
+        \ 'col': col,
+        \ 'width': width,
+        \ 'height': height
+        \ }
+  call nvim_open_win(buf, v:true, opts)
+endfunction
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1

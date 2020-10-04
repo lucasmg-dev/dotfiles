@@ -8,12 +8,16 @@ call plug#begin('~/.vim/plugged')
 "Plug 'pangloss/vim-javascript'
 
 " status bar
-Plug 'maximbaz/lightline-ale'
-Plug 'itchyny/lightline.vim'
+" Plug 'maximbaz/lightline-ale'
+" Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Themes
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'mhartington/oceanic-next'
+Plug 'chriskempson/tomorrow-theme'
 
 " typing
 "Plug 'alvan/vim-closetag'
@@ -25,13 +29,15 @@ Plug 'shinchu/lightline-gruvbox.vim'
 "Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 
 " IDE
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
-"Plug 'yggdroot/indentline'
+Plug 'yggdroot/indentline'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-syntastic/syntastic'
