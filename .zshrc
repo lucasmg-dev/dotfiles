@@ -123,6 +123,8 @@ export VENV_HOME=~/venv
 
 alias v=openNvim
 
+export EDITOR=nvim
+
 function openNvim {
   if [ $# -eq 0 ]; then
     nvim ./
@@ -147,3 +149,4 @@ if [ -f '/Users/lucasgonzalez/Desktop/google-cloud-sdk/completion.zsh.inc' ]; th
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

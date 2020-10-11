@@ -26,7 +26,6 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-pairs',
   \ 'coc-tsserver',
-  \ 'coc-prettier', 
   \ 'coc-json', 
   \ ]
 
@@ -34,19 +33,18 @@ let g:indentLine_char = '|'
 let g:indentLine_setConceal = 0
 
 " Linter
-let g:syntastic_javascript_checkers = ['eslint']
-" autocmd bufwritepost *.js silent !standard --fix %
-" set autoread
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+let g:ale_fixers = {
+\   'javascript': [
+\       'eslint',
+\   ],
+\}
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:ale_fix_on_save = 1
+
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -150,3 +148,4 @@ endfunction
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
