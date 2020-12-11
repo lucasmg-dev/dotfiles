@@ -5,7 +5,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Themes
-Plug 'crusoexia/vim-monokai'
+Plug 'morhetz/gruvbox'
+Plug 'mhartington/oceanic-next'
 
 " IDE
 Plug 'junegunn/fzf'
@@ -17,6 +18,11 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'yggdroot/indentline'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
+Plug 'sheerun/vim-polyglot'
+
+" JS & TS
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
 
 " Theme
 Plug 'haishanh/night-owl.vim'
@@ -26,5 +32,6 @@ Plug 'dense-analysis/ale'
 
 " Web Development
 Plug 'mattn/emmet-vim'
+Plug 'robertbasic/vim-hugo-helper'
 
 call plug#end()

@@ -2,13 +2,18 @@
 " Resume latest coc list
 let g:closetag_filenames = '*.html,*.js,*.jsx,*.ts,*.tsx'
 
-" For Neovim 0.1.3 and 0.1.4
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let g:airline_theme='oceanicnext'
 
-" Or if you have Neovim >= 0.1.5
-if (has("termguicolors"))
- set termguicolors
-endif
+" kite
+let g:kite_supported_languages = ['javascript', 'python']
+
+" coc
+autocmd FileType python let b:coc_suggest_disable = 1
+autocmd FileType javascript let b:coc_suggest_disable = 1
+autocmd FileType scss setl iskeyword+=@-@
+
+" always show signcolumns
+set signcolumn=yes
 
 "  nerdtree
 let NERDTreeShowHidden=1
@@ -30,17 +35,21 @@ let g:coc_global_extensions = [
   \ ]
 
 let g:indentLine_char = '|'
-let g:indentLine_setConceal = 0
+" let g:indentLine_setConceal = 0
 
 " Linter
 let g:ale_linters = {
 \   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
 \}
 
 let g:ale_fixers = {
 \   'javascript': [
 \       'eslint',
 \   ],
+\   'typescript': [
+\       'eslint',
+\   ]
 \}
 
 let g:ale_fix_on_save = 1
@@ -128,7 +137,7 @@ command! -bang -nargs=? -complete=dir Filesset expandtab smarttab
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 let $FZF_DEFAULT_OPTS='--layout=reverse'
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+"let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 function! FloatingFZF()
   let buf = nvim_create_buf(v:false, v:true)
   call setbufvar(buf, '&signcolumn', 'no')
@@ -147,5 +156,5 @@ function! FloatingFZF()
 endfunction
 
 " Airline
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#ale#enabled = 1
