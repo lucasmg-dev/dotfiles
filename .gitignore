@@ -1,0 +1,35 @@
+# ── Ignorar todo por defecto, incluir solo lo explícito ──
+*
+
+# ── Dotfiles que sí queremos versionar ──
+!.gitignore
+!CLAUDE.md
+!AGENTS.md
+!README.md
+
+# Fish
+!fish/
+!fish/**
+
+# Ghostty
+!ghostty/
+!ghostty/**
+
+# Neovim
+!nvim/
+!nvim/**
+nvim/lazy-lock.json
+
+# Starship
+!starship.toml
+
+# tmux
+!.tmux.conf
+!tmux/
+!tmux/**
+
+# opencode
+!opencode/
+!opencode/**
+opencode/node_modules/
+opencode/bun.lock

@@ -1,0 +1,53 @@
+add_newline = false
+command_timeout = 1000
+
+format = """
+$directory$git_branch$git_status$nodejs$python$rust$cmd_duration
+$character
+"""
+
+# --- Prompt character ---
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"
+vicmd_symbol = "[<](bold green)"
+
+# --- Directory ---
+[directory]
+style = "bold blue"
+format = "[$path]($style)"
+truncation_length = 3
+
+# --- Git ---
+[git_branch]
+format = "[ $symbol$branch]($style)"
+style = "magenta"
+symbol = "git "
+
+[git_status]
+format = "[$all_status$ahead_behind]($style)"
+style = "yellow"
+conflicted = "!"
+ahead = " ahead"
+behind = " behind"
+diverged = " diverged"
+
+# --- Runtimes ---
+[nodejs]
+symbol = "node "
+style = "green"
+format = "[ $symbol($version)]($style)"
+
+[python]
+symbol = "py "
+style = "cyan"
+format = "[ $symbol($version)]($style)"
+
+[rust]
+symbol = "rs "
+style = "red"
+format = "[ $symbol($version)]($style)"
+
+# --- Command duration ---
+[cmd_duration]
+style = "white"
