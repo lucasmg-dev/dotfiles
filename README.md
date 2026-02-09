@@ -67,7 +67,12 @@ brew install --cask font-monaspace
    ln -sf /Applications/Ghostty.app/Contents/MacOS/ghostty /opt/homebrew/bin/ghostty
    ```
 
-7. **Restart your terminal** to apply all changes
+7. **Symlink CLAUDE.md for global Claude Code persona**:
+   ```bash
+   ln -sf ~/.config/CLAUDE.md ~/.claude/CLAUDE.md
+   ```
+
+8. **Restart your terminal** to apply all changes
 
 ---
 
