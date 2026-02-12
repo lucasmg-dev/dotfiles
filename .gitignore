@@ -33,3 +33,10 @@ nvim/lazy-lock.json
 !opencode/**
 opencode/node_modules/
 opencode/bun.lock
+
+# iTerm2
+!iterm2/
+!iterm2/**
+
+# Install script
+!install.sh

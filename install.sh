@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Componentes que van a ~/.config/
+CONFIG_DIRS=(fish ghostty nvim opencode iterm2)
+CONFIG_FILES=(starship.toml)
+
+# Componentes que van a ~/
+HOME_FILES=(.tmux.conf)
+
+link_item() {
+    local src="$1" dest="$2"
+    if [ -L "$dest" ]; then
+        rm "$dest"
+    elif [ -e "$dest" ]; then
+        mv "$dest" "${dest}.backup"
+        echo "  Backup: ${dest}.backup"
+    fi
+    ln -s "$src" "$dest"
+    echo "  Linked: $dest → $src"
+}
+
+mkdir -p "$HOME/.config"
+
+echo "Linking dotfiles from $DOTFILES_DIR"
+echo ""
+
+for dir in "${CONFIG_DIRS[@]}"; do
+    link_item "$DOTFILES_DIR/$dir" "$HOME/.config/$dir"
+done
+
+for file in "${CONFIG_FILES[@]}"; do
+    link_item "$DOTFILES_DIR/$file" "$HOME/.config/$file"
+done
+
+for file in "${HOME_FILES[@]}"; do
+    link_item "$DOTFILES_DIR/$file" "$HOME/$file"
+done
+
+echo ""
+echo "Done!"
