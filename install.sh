@@ -4,11 +4,14 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Componentes que van a ~/.config/
-CONFIG_DIRS=(fish ghostty nvim opencode iterm2)
+CONFIG_DIRS=(fish ghostty nvim opencode iterm2 claude)
 CONFIG_FILES=(starship.toml)
 
 # Componentes que van a ~/
 HOME_FILES=(.tmux.conf)
+
+# Archivos individuales dentro de ~/.claude/ (runtime dir, no se puede symlinkar entero)
+CLAUDE_FILES=(settings.json)
 
 link_item() {
     local src="$1" dest="$2"
@@ -37,6 +40,12 @@ done
 
 for file in "${HOME_FILES[@]}"; do
     link_item "$DOTFILES_DIR/$file" "$HOME/$file"
+done
+
+# Claude Code: symlink archivos de config dentro de ~/.claude/
+mkdir -p "$HOME/.claude"
+for file in "${CLAUDE_FILES[@]}"; do
+    link_item "$DOTFILES_DIR/claude/$file" "$HOME/.claude/$file"
 done
 
 echo ""

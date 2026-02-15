@@ -23,6 +23,10 @@ nvim/lazy-lock.json
 # Starship
 !starship.toml
 
+# Claude
+!claude/
+!claude/**
+
 # tmux
 !.tmux.conf
 !tmux/
