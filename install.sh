@@ -11,7 +11,7 @@ CONFIG_FILES=(starship.toml)
 HOME_FILES=(.tmux.conf)
 
 # Archivos individuales dentro de ~/.claude/ (runtime dir, no se puede symlinkar entero)
-CLAUDE_FILES=(settings.json)
+CLAUDE_FILES=(settings.json CLAUDE.md)
 
 link_item() {
     local src="$1" dest="$2"
