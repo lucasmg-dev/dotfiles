@@ -48,8 +48,8 @@ if status is-interactive
         starship init fish | source
     end
 
-    # tmux auto-start (solo en Ghostty y si no estamos ya en tmux)
-    if set -q GHOSTTY_RESOURCES_DIR; and not set -q TMUX
+    # tmux auto-start (solo en Ghostty/iTerm2 y si no estamos ya en tmux)
+    if begin; set -q GHOSTTY_RESOURCES_DIR; or set -q ITERM_SESSION_ID; end; and not set -q TMUX
         exec tmux new-session -A -s main
     end
 end
