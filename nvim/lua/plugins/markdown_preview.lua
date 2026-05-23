@@ -1,8 +1,18 @@
 return {
   {
+    "mfussenegger/nvim-lint",
+    opts = function(_, opts)
+      opts.linters_by_ft = opts.linters_by_ft or {}
+      opts.linters_by_ft.markdown = {}
+    end,
+  },
+  {
     "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
     ft = { "markdown" },
-    build = "cd app && npx --yes yarn install",
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
     config = function()
       vim.g.mkdp_theme = "dark"
       vim.g.mkdp_browser = ""
