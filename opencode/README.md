@@ -8,35 +8,20 @@ Multi-agent system for [OpenCode CLI](https://opencode.ai) that implements **Spe
 
 The system has three layers:
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                  CONVERSATIONAL LAYER                    │
-│                                                         │
-│  LucasG (default agent)                                 │
-│  Senior Architect mentor — plan-first, implement on ask │
-└─────────────────────────────────────────────────────────┘
-                          │
-                    /flow commands
-                          │
-┌─────────────────────────────────────────────────────────┐
-│                  ORCHESTRATION LAYER                     │
-│                                                         │
-│  orchestrator (no tools — pure coordination)            │
-│  Invokes subagents, validates JSON, enforces gates      │
-└─────────────────────────────────────────────────────────┘
-                          │
-              subagent invocations (@agent)
-                          │
-┌─────────────────────────────────────────────────────────┐
-│                   EXECUTION LAYER                        │
-│                                                         │
-│  SSD Pipeline (7 agents):                               │
-│  explorer → proposer → spec-writer → designer →         │
-│  task-planner → implementer → verifier → archiver       │
-│                                                         │
-│  Domain Specialists (3 agents):                         │
-│  SEO-Specialist · WordPress-Specialist · datadog-metrics│
-└─────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph C["CONVERSATIONAL LAYER"]
+        LucasG["LucasG — default agent<br/>Senior Architect mentor · plan-first, implement on ask"]
+    end
+    subgraph O["ORCHESTRATION LAYER"]
+        orch["orchestrator — no tools<br/>Invokes subagents · validates JSON · enforces gates"]
+    end
+    subgraph E["EXECUTION LAYER"]
+        pipeline["SSD Pipeline — 8 agents<br/>explorer → proposer → spec-writer → designer<br/>task-planner → implementer → verifier → archiver"]
+        specialists["Domain Specialists — 3 agents<br/>SEO-Specialist · WordPress-Specialist · datadog-metrics"]
+    end
+    C -->|"/flow commands"| O
+    O -->|"@agent invocations"| E
 ```
 
 ---
@@ -79,31 +64,19 @@ opencode/
 
 The complete specification-driven pipeline. Best for complex features, architectural changes, or anything that benefits from thorough design.
 
-```
-User Goal
-    │
-    ▼
-┌─────────────┐
-│ ORCHESTRATOR │
-└──────┬──────┘
-       │
-       ├── 1. @explorer ──────► analysis artifact
-       │
-       ├── 2. @proposer ──────► proposal artifact
-       │                        🚧 USER GATE (approve approach)
-       │
-       ├── 3. @spec-writer ───► spec artifact
-       │
-       ├── 4. @designer ──────► design artifact
-       │
-       ├── 5. @task-planner ──► tasks artifact
-       │                        🚧 USER GATE (approve plan)
-       │
-       ├── 6. @implementer ───► patch artifact (writes code)
-       │
-       ├── 7. @verifier ──────► verification artifact (runs tests)
-       │
-       └── 8. @archiver ──────► closure artifact
+```mermaid
+flowchart TD
+    goal([User Goal]) --> orch[ORCHESTRATOR]
+    orch --> p1["1 · @explorer"] --> a1(["analysis"])
+    a1 --> p2["2 · @proposer"] --> a2(["proposal"])
+    a2 --> g1{{"USER GATE — approve approach"}}
+    g1 --> p3["3 · @spec-writer"] --> a3(["spec"])
+    a3 --> p4["4 · @designer"] --> a4(["design"])
+    a4 --> p5["5 · @task-planner"] --> a5(["tasks"])
+    a5 --> g2{{"USER GATE — approve plan"}}
+    g2 --> p6["6 · @implementer"] --> a6(["patch"])
+    a6 --> p7["7 · @verifier"] --> a7(["verification"])
+    a7 --> p8["8 · @archiver"] --> a8(["closure"])
 ```
 
 **Usage:** `/flow <goal description>`
