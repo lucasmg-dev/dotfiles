@@ -1,10 +1,10 @@
-font-family = "Dank Mono Regular Nerd Font"
-font-size = 15
+font-family = "IosevkaTerm Nerd Font Mono"
+font-size = 18
 
-theme = Catppuccin Mocha
+theme = Catppuccin Frappe
 
 # Window
-background-opacity = 0.95
+background-opacity = 1
 background-blur-radius = 20
 
 window-decoration = true
@@ -19,4 +19,3 @@ gtk-tabs-location = hidden
 # Shell
 shell-integration = fish
 command = /opt/homebrew/bin/fish
-

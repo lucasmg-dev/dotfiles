@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Gentleman theme colors (ANSI 256)
-PRIMARY='\033[38;5;110m'   # #7FB4CA azul claro
-ACCENT='\033[38;5;179m'    # #E0C15A dorado
-SECONDARY='\033[38;5;146m' # #A3B5D6 azul gris
-MUTED='\033[38;5;242m'     # #5C6170 gris
-SUCCESS='\033[38;5;150m'   # #B7CC85 verde
-ERROR='\033[38;5;174m'     # #CB7C94 rosa/rojo
-PURPLE='\033[38;5;183m'    # #C99AD6 púrpura
+# Catppuccin Frappe theme colors
+PRIMARY='\033[38;2;140;170;238m'   # #8caaee blue
+ACCENT='\033[38;2;229;200;144m'    # #e5c890 yellow
+SECONDARY='\033[38;2;186;187;241m' # #babbf1 lavender
+MUTED='\033[38;2;131;139;167m'     # #838ba7 overlay1
+SUCCESS='\033[38;2;166;209;137m'   # #a6d189 green
+ERROR='\033[38;2;231;130;132m'     # #e78284 red
+PURPLE='\033[38;2;202;158;230m'    # #ca9ee6 mauve
 BOLD='\033[1m'
 STRIKE='\033[9m'
 NC='\033[0m'

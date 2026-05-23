@@ -8,25 +8,25 @@ $character
 
 # --- Prompt character ---
 [character]
-success_symbol = "[>](bold green)"
-error_symbol = "[>](bold red)"
-vicmd_symbol = "[<](bold green)"
+success_symbol = "[>](bold #a6d189)"
+error_symbol = "[>](bold #e78284)"
+vicmd_symbol = "[<](bold #a6d189)"
 
 # --- Directory ---
 [directory]
-style = "bold blue"
+style = "bold #8caaee"
 format = "[$path]($style)"
 truncation_length = 3
 
 # --- Git ---
 [git_branch]
 format = "[ $symbol$branch]($style)"
-style = "magenta"
+style = "#ca9ee6"
 symbol = "git "
 
 [git_status]
 format = "[$all_status$ahead_behind]($style)"
-style = "yellow"
+style = "#e5c890"
 conflicted = "!"
 ahead = " ahead"
 behind = " behind"
@@ -35,19 +35,19 @@ diverged = " diverged"
 # --- Runtimes ---
 [nodejs]
 symbol = "node "
-style = "green"
+style = "#a6d189"
 format = "[ $symbol($version)]($style)"
 
 [python]
 symbol = "py "
-style = "cyan"
+style = "#81c8be"
 format = "[ $symbol($version)]($style)"
 
 [rust]
 symbol = "rs "
-style = "red"
+style = "#ef9f76"
 format = "[ $symbol($version)]($style)"
 
 # --- Command duration ---
 [cmd_duration]
-style = "white"
+style = "#c6d0f5"
