@@ -41,6 +41,13 @@ opencode/bun.lock
 # iTerm2
 !iterm2/
 !iterm2/**
+iterm2/AppSupport
+iterm2/AppSupport/**
+**/.DS_Store
+
+# Gemini
+!gemini/
+!gemini/**
 
 # Install script
 !install.sh
