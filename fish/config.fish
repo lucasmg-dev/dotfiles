@@ -53,3 +53,14 @@ if status is-interactive
         exec tmux new-session -A -s main
     end
 end
+
+# opencode
+fish_add_path /Users/naranjax/.opencode/bin
+export PATH="$HOME/.local/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/Users/naranjax/.local/bin" $PATH
+
+# Added by Antigravity IDE
+fish_add_path /Users/naranjax/.antigravity-ide/antigravity-ide/bin
