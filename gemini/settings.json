@@ -1,0 +1,54 @@
+{
+  "general": {
+    "defaultApprovalMode": "auto_edit"
+  },
+  "ui": {
+    "theme": "GitHub",
+    "inlineThinkingMode": "full",
+    "footer": {
+      "items": [
+        "workspace",
+        "git-branch",
+        "sandbox",
+        "model-name",
+        "context-used",
+        "quota"
+      ]
+    }
+  },
+  "model": {
+    "name": "gemini-3-pro-preview"
+  },
+  "agents": {
+    "overrides": {
+      "codebase_investigator": {
+        "runConfig": {
+          "maxTurns": 50
+        }
+      }
+    }
+  },
+  "context": {
+    "fileName": [
+      "GEMINI.md"
+    ]
+  },
+  "mcpServers": {
+    "datadog": {
+      "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp",
+      "type": "http"
+    },
+    "jira": {
+      "url": "https://mcp.atlassian.com/v1/mcp/authv2",
+      "type": "http"
+    }
+  },
+  "experimental": {
+    "enableAgents": true
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  }
+}

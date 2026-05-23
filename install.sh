@@ -13,6 +13,9 @@ HOME_FILES=(.tmux.conf)
 # Archivos individuales dentro de ~/.claude/ (runtime dir, no se puede symlinkar entero)
 CLAUDE_FILES=(settings.json CLAUDE.md)
 
+# Archivos/carpetas dentro de ~/.gemini/ (runtime dir, no se puede symlinkar entero)
+GEMINI_ITEMS=(settings.json antigravity)
+
 link_item() {
     local src="$1" dest="$2"
     if [ -L "$dest" ]; then
@@ -46,6 +49,12 @@ done
 mkdir -p "$HOME/.claude"
 for file in "${CLAUDE_FILES[@]}"; do
     link_item "$DOTFILES_DIR/claude/$file" "$HOME/.claude/$file"
+done
+
+# Gemini CLI: symlink archivos de config dentro de ~/.gemini/
+mkdir -p "$HOME/.gemini"
+for item in "${GEMINI_ITEMS[@]}"; do
+    link_item "$DOTFILES_DIR/gemini/$item" "$HOME/.gemini/$item"
 done
 
 echo ""
