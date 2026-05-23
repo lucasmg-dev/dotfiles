@@ -1,0 +1,1 @@
+/Users/naranjax/.claude/skills/gstack/review/checklist.md
