@@ -34,8 +34,8 @@ The system has three layers:
 │  explorer → proposer → spec-writer → designer →         │
 │  task-planner → implementer → verifier → archiver       │
 │                                                         │
-│  Domain Specialists (2 agents):                         │
-│  SEO-Specialist · WordPress-Specialist                  │
+│  Domain Specialists (3 agents):                         │
+│  SEO-Specialist · WordPress-Specialist · datadog-metrics│
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -47,7 +47,8 @@ The system has three layers:
 opencode/
 ├── opencode.json          # Main config (default agent, MCP servers, permissions)
 ├── package.json           # Dependencies (@opencode-ai/plugin SDK)
-├── agents/                # Agent definitions (12 agents)
+├── package-lock.json      # Locked dependency versions
+├── agents/                # Agent definitions (13 agents)
 │   ├── LucasG.md          # Primary — Senior Architect mentor
 │   ├── orchestrator.md    # Primary — Delegate-only workflow coordinator
 │   ├── explorer.md        # Subagent — Repo analysis & discovery
@@ -58,12 +59,16 @@ opencode/
 │   ├── implementer.md     # Subagent — Code implementation
 │   ├── verifier.md        # Subagent — Verification against criteria
 │   ├── archiver.md        # Subagent — Closure & release notes
+│   ├── datadog-metrics.md # Subagent — Datadog metrics & dashboards
 │   ├── SEO-Specialist.md  # Subagent — SEO for media websites
 │   └── WordPress-Specialist.md  # Subagent — WordPress development
-└── commands/              # Flow definitions (slash commands)
-    ├── flow.md            # Full 8-phase SSD workflow
-    ├── flow-lite.md       # Lighter 6-phase workflow (skip spec+design)
-    └── flow-verify.md     # Verification-only workflow
+└── skills/                # Slash commands (flow skills + 35+ gstack skills)
+    ├── gstack/            # gstack core skill
+    ├── gstack-*/          # gstack sub-skills (browse, qa, review, ship, etc.)
+    ├── gstack-autoplan/
+    ├── gstack-review/
+    ├── gstack-ship/
+    └── ...                # Full gstack suite — see gstack documentation
 ```
 
 ---
@@ -162,6 +167,7 @@ Standalone experts with full tool access, designed for domain-specific tasks. Th
 |-------|--------|-------|-------|
 | **SEO-Specialist** | Technical SEO, Core Web Vitals, Schema.org, metadata, international SEO, news SEO | `bash`, `edit`, `write`, `read` | `/seo` |
 | **WordPress-Specialist** | Themes, plugins, Gutenberg, performance, security, WP-CLI, REST API, WPGraphQL | `bash`, `edit`, `write`, `read` | `/wordpress` |
+| **datadog-metrics** | Datadog dashboards, monitors, metrics analysis, log queries, incident triage | `bash`, `read` | — |
 
 ---
 
@@ -183,6 +189,7 @@ Follows strict **principle of least privilege**: only the implementer writes cod
 | archiver | no | no | no | — |
 | **SEO-Specialist** | **yes** | **yes** | **yes** | **yes** |
 | **WordPress-Specialist** | **yes** | **yes** | **yes** | **yes** |
+| **datadog-metrics** | **yes** | no | no | **yes** |
 
 ---
 
@@ -359,21 +366,23 @@ Every subagent outputs strict JSON. Invalid JSON triggers a re-run of the subage
     }
   },
   "mcp": {
-    "context7": {
+    "jira": {
       "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
-      "headers": {
-        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
-      },
+      "url": "https://mcp.atlassian.com/v1/mcp/authv2",
       "enabled": true
+    },
+    "datadog": {
+      "type": "remote",
+      "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp"
     }
   }
 }
 ```
 
 - **Default agent**: `LucasG` — the conversational mentor agent
-- **Skills**: Only `bolavip-platform` and `seo` are allowed; all others denied
-- **MCP**: [Context7](https://context7.com) integration for documentation lookups (requires `CONTEXT7_API_KEY` env var)
+- **Skills**: Only `bolavip-platform` and `seo` are allowed by default; all others denied
+- **MCP — Jira**: Atlassian remote MCP for issue and project management
+- **MCP — Datadog**: Datadog remote MCP for metrics, monitors, logs, and dashboards
 
 ### Dependencies
 

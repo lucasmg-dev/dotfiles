@@ -1,18 +1,19 @@
-# .config - Development Environment Configuration
+# dotfiles — Development Environment
 
-Personal dotfiles for a macOS (Apple Silicon) development environment with **Ghostty**, **Fish Shell**, **tmux**, **Starship**, and **LazyVim**, themed with **Catppuccin Mocha** and **Monaspace Argon** font.
+Personal dotfiles for a macOS (Apple Silicon) development environment with **Ghostty**, **Fish Shell**, **tmux**, **Starship**, and **LazyVim**, themed with **Catppuccin Frappe** and **IosevkaTerm Nerd Font Mono**.
 
 ---
 
 ## Components
 
-- **Ghostty**: GPU-accelerated terminal with transparency and blur
-- **tmux**: Terminal multiplexer with Catppuccin theme, CPU/MEM monitoring
-- **Fish Shell**: Smart shell with autosuggestions
-- **Starship**: Fast, customizable prompt
-- **LazyVim**: Neovim configuration framework
-- **Atuin**: Shell history sync and search
-- **OpenCode**: AI-powered coding assistant
+- **Ghostty**: GPU-accelerated terminal, full opacity
+- **tmux**: Terminal multiplexer with manual Frappe-themed chips, CPU/MEM monitoring
+- **Fish Shell**: Smart shell with autosuggestions and fnm version switching
+- **Starship**: Fast prompt, Catppuccin Frappe palette
+- **LazyVim**: Neovim configuration framework, Catppuccin Frappe
+- **Claude Code**: AI coding assistant with SSD workflow and custom agents/skills
+- **OpenCode**: AI coding assistant with SSD workflow and gstack skills
+- **Gemini CLI**: Google Gemini CLI with antigravity MCP configuration
 
 ---
 
@@ -21,39 +22,45 @@ Personal dotfiles for a macOS (Apple Silicon) development environment with **Gho
 ### Prerequisites
 
 ```bash
-# Install Homebrew (macOS)
+# Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Install core tools
-brew install fish starship atuin neovim tmux ghostty
+brew install fish starship neovim tmux
 
-# Install Monaspace Argon font
-brew install --cask font-monaspace
+# Install Ghostty (download from https://ghostty.org)
+
+# Install IosevkaTerm Nerd Font
+brew install --cask font-iosevka-term-nerd-font
+
+# Install fnm (Node version manager)
+brew install fnm
 ```
 
 ### Setup
 
-1. **Clone this repository** to `~/.config`:
+1. **Clone this repository**:
    ```bash
-   git clone <your-repo-url> ~/.config
+   git clone git@github.com:lucasmg-dev/dotfiles.git ~/workspace/dotfiles
    ```
 
-2. **Set Fish as default shell**:
+2. **Run the install script** — symlinks everything into place:
+   ```bash
+   cd ~/workspace/dotfiles
+   ./install.sh
+   ```
+   This creates symlinks for `~/.tmux.conf`, `~/.claude/settings.json`, `~/.claude/CLAUDE.md`, `~/.gemini/settings.json`, and `~/.gemini/antigravity/`.
+
+3. **Set Fish as default shell**:
    ```bash
    echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
    chsh -s /opt/homebrew/bin/fish
    ```
 
-3. **Install tmux plugins** (TPM):
+4. **Install tmux plugins** (TPM):
    ```bash
    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
    # Open tmux, then press Ctrl+a I to install plugins
-   ```
-
-4. **Install Fish plugins** (Fisher):
-   ```bash
-   fish
-   # Fisher auto-installs on first run
    ```
 
 5. **Install Neovim plugins**:
@@ -62,35 +69,26 @@ brew install --cask font-monaspace
    # Run :Lazy sync
    ```
 
-6. **Symlink Ghostty CLI** (optional):
-   ```bash
-   ln -sf /Applications/Ghostty.app/Contents/MacOS/ghostty /opt/homebrew/bin/ghostty
-   ```
-
-7. **Symlink CLAUDE.md for global Claude Code persona**:
-   ```bash
-   ln -sf ~/.config/CLAUDE.md ~/.claude/CLAUDE.md
-   ```
-
-8. **Restart your terminal** to apply all changes
+6. **Restart your terminal** to apply all changes.
 
 ---
 
-## Theme: Catppuccin Mocha
+## Theme: Catppuccin Frappe
 
 All components share the same color scheme:
 
 | Component | Config |
 |---|---|
-| Ghostty | `theme = Catppuccin Mocha` |
-| tmux | `@catppuccin_flavor "mocha"` via catppuccin/tmux plugin |
-| Neovim | `catppuccin/nvim` with `flavour = "mocha"`, transparent background |
-| Starship | Custom color palette in `starship.toml` |
+| Ghostty | `theme = Catppuccin Frappe` |
+| tmux | Manual chips using Frappe hex colors |
+| Neovim | `catppuccin/nvim` with `flavour = "frappe"` |
+| Starship | Custom Frappe palette in `starship.toml` |
+| Claude statusline | Frappe ANSI 24-bit colors |
 
-### Font: Monaspace Argon
+### Font: IosevkaTerm Nerd Font Mono
 
-- **Ghostty**: size 15
-- **Neovim GUI**: IosevkaTerm Nerd Font, size 14 (`nvim/lua/config/options.lua`)
+- **Ghostty**: size 18
+- **Neovim**: inherits from terminal
 
 ---
 
@@ -103,7 +101,7 @@ Ghostty (/opt/homebrew/bin/fish)
     -> auto-starts tmux (session "main") only in Ghostty
 ```
 
-Fish detects Ghostty via `GHOSTTY_RESOURCES_DIR` and skips tmux if already inside a tmux session.
+Fish detects Ghostty via `GHOSTTY_RESOURCES_DIR` and skips tmux if already inside a tmux session. `conf.d/fnm.fish` handles automatic Node version switching on `cd`.
 
 ---
 
@@ -129,45 +127,46 @@ Fish detects Ghostty via `GHOSTTY_RESOURCES_DIR` and skips tmux if already insid
 
 ### Status Bar
 
-- **Top position**, Catppuccin Mocha styled
-- **Right**: CPU usage (color changes by load) + MEM usage
-- **Center**: Window tabs with number and command name
+- **Top position**, Frappe-colored chips (no plugin — raw `fg/bg` format strings)
+- **Right**: session name · hostname · CPU% · RAM% · time
+- **Left**: window tabs with index and name
 
 ### Plugins
 
-- `catppuccin/tmux` - Theme
-- `tmux-plugins/tmux-cpu` - CPU and memory metrics
-- `christoomey/vim-tmux-navigator` - Seamless vim/tmux pane navigation
+- `tmux-plugins/tmux-sensible` — Sensible defaults
+- `tmux-plugins/tmux-cpu` — CPU and memory metrics (`#{cpu_percentage}`, `#{ram_percentage}`)
+- `christoomey/vim-tmux-navigator` — Seamless vim/tmux pane navigation
 
 ---
 
 ## Neovim / LazyVim
 
-- Transparent background (inherits Ghostty opacity)
+- Catppuccin Frappe, solid background
+- Markdown: spell and markdownlint disabled; MarkdownPreview uses pre-built binary
 - Bufferline/tabs disabled (single window workflow)
 - Explorer tree disabled on startup (`<Space>e` to open)
-- File picker excludes `node_modules`, `.git`, `.cache`
-- Shows hidden files, hides git-ignored files
 
 ### Custom Plugins
 
 | File | Plugin |
 |---|---|
-| `colorscheme.lua` | Catppuccin Mocha with transparency |
+| `colorscheme.lua` | Catppuccin Frappe with full integrations |
+| `markdown_preview.lua` | MarkdownPreview (pre-built binary) + nvim-lint markdown disabled |
 | `snacks.lua` | Picker/explorer config |
 | `bufferline.lua` | Disabled |
 | `vim-tmux-navigator.lua` | tmux/nvim pane navigation |
 | `oil.lua` | File manager |
-| `markdown_preview.lua` | Markdown preview |
 
 ---
 
 ## Directory Structure
 
 ```
-.config/
+dotfiles/
 ├── fish/
 │   ├── config.fish          # Main Fish config (PATH, tools, tmux auto-start)
+│   ├── conf.d/
+│   │   └── fnm.fish         # Auto Node version switching
 │   ├── functions/           # Custom Fish functions
 │   ├── completions/         # Auto-completions
 │   └── fish_plugins         # Fisher plugin list
@@ -177,16 +176,30 @@ Fish detects Ghostty via `GHOSTTY_RESOURCES_DIR` and skips tmux if already insid
 │       └── plugins/         # Plugin configurations
 ├── ghostty/
 │   └── config               # Ghostty config
-├── tmux/
-│   └── mem.sh               # Memory usage script
-├── opencode/                # OpenCode config
+├── claude/
+│   ├── CLAUDE.md            # Global Claude Code persona and instructions
+│   ├── settings.json        # Claude Code settings
+│   ├── statusline.sh        # ccusage statusline (Frappe palette)
+│   ├── agents/              # SSD pipeline agents (8 agents)
+│   └── skills/              # Flow skills (/flow, /flow-lite, /flow-verify)
+├── opencode/
+│   ├── opencode.json        # OpenCode config (MCPs, default agent)
+│   ├── agents/              # SSD pipeline + domain specialist agents
+│   └── skills/              # gstack skills (35+) and flow skills
+├── gemini/
+│   ├── settings.json        # Gemini CLI settings
+│   └── antigravity/         # Antigravity MCP config
+├── iterm2/
+│   └── colors/              # Color presets (.itermcolors)
 ├── starship.toml            # Starship prompt config
+├── install.sh               # Symlink installer
 ├── AGENTS.md                # Guidelines for AI coding agents
 ├── CLAUDE.md                # Guidelines for Claude Code
 └── README.md                # This file
 
-~/.tmux.conf                 # tmux configuration
-~/.tmux/plugins/             # TPM plugins (catppuccin, tmux-cpu, vim-tmux-navigator)
+~/.tmux.conf                 # Symlink → dotfiles/.tmux.conf
+~/.claude/                   # Symlinks → dotfiles/claude/
+~/.gemini/                   # Symlinks → dotfiles/gemini/
 ```
 
 ---
@@ -206,11 +219,10 @@ Fish detects Ghostty via `GHOSTTY_RESOURCES_DIR` and skips tmux if already insid
 ## Verification
 
 ```bash
-fish -n ~/.config/fish/config.fish          # Fish syntax check
-nvim --headless -c "lua print('OK')" -c quit  # Neovim config check
-starship print-config                        # Starship config check
-ghostty +show-config                         # Ghostty config check
-ghostty +list-themes                         # List available Ghostty themes
+fish -n ~/workspace/dotfiles/fish/config.fish  # Fish syntax check
+nvim --headless -c "lua print('OK')" -c quit   # Neovim config check
+starship print-config                          # Starship config check
+ghostty +show-config                           # Ghostty config check
 ```
 
 ---
