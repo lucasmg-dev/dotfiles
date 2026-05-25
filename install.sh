@@ -4,16 +4,16 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Componentes que van a ~/.config/
-CONFIG_DIRS=(fish ghostty nvim opencode iterm2 claude)
+CONFIG_DIRS=(fish ghostty nvim iterm2)
 CONFIG_FILES=(starship.toml)
 
 # Componentes que van a ~/
 HOME_FILES=(.tmux.conf)
 
-# Archivos individuales dentro de ~/.claude/ (runtime dir, no se puede symlinkar entero)
+# Claude Code: archivos dentro de ~/.claude/ (runtime dir, no se puede symlinkar entero)
 CLAUDE_FILES=(settings.json CLAUDE.md)
 
-# Archivos/carpetas dentro de ~/.gemini/ (runtime dir, no se puede symlinkar entero)
+# Gemini CLI: archivos/carpetas dentro de ~/.gemini/
 GEMINI_ITEMS=(settings.json antigravity)
 
 link_item() {
@@ -45,10 +45,14 @@ for file in "${HOME_FILES[@]}"; do
     link_item "$DOTFILES_DIR/$file" "$HOME/$file"
 done
 
+# AI tools: source of truth is ai/
+# OpenCode: ~/.config/opencode -> ai/opencode
+link_item "$DOTFILES_DIR/ai/opencode" "$HOME/.config/opencode"
+
 # Claude Code: symlink archivos de config dentro de ~/.claude/
 mkdir -p "$HOME/.claude"
 for file in "${CLAUDE_FILES[@]}"; do
-    link_item "$DOTFILES_DIR/claude/$file" "$HOME/.claude/$file"
+    link_item "$DOTFILES_DIR/ai/claude/$file" "$HOME/.claude/$file"
 done
 
 # Gemini CLI: symlink archivos de config dentro de ~/.gemini/

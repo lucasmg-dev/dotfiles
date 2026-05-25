@@ -163,43 +163,49 @@ Fish detects Ghostty via `GHOSTTY_RESOURCES_DIR` and skips tmux if already insid
 
 ```
 dotfiles/
+├── ai/                          # SOURCE OF TRUTH for AI tools
+│   ├── claude/                  # Claude Code config (CLAUDE.md, settings.json, statusline.sh)
+│   ├── opencode/                # OpenCode config (opencode.json, agents/LucasG.md)
+│   ├── agents/
+│   │   └── shared/              # Tool-agnostic agent definitions
+│   ├── skills/
+│   │   ├── shared/              # Tool-agnostic skills
+│   │   ├── claude/              # Claude Code skills (flow, flow-lite, flow-verify)
+│   │   └── opencode/            # OpenCode specific skills
+│   └── commands/
+│       ├── shared/              # Tool-agnostic commands
+│       ├── claude/              # Claude Code specific commands
+│       └── opencode/            # OpenCode commands (flow, flow-lite, flow-verify)
 ├── fish/
-│   ├── config.fish          # Main Fish config (PATH, tools, tmux auto-start)
+│   ├── config.fish
 │   ├── conf.d/
-│   │   └── fnm.fish         # Auto Node version switching
-│   ├── functions/           # Custom Fish functions
-│   ├── completions/         # Auto-completions
-│   └── fish_plugins         # Fisher plugin list
+│   │   └── fnm.fish
+│   ├── functions/
+│   ├── completions/
+│   └── fish_plugins
 ├── nvim/
 │   └── lua/
-│       ├── config/          # Neovim core config
-│       └── plugins/         # Plugin configurations
+│       ├── config/
+│       └── plugins/
 ├── ghostty/
-│   └── config               # Ghostty config
-├── claude/
-│   ├── CLAUDE.md            # Global Claude Code persona and instructions
-│   ├── settings.json        # Claude Code settings
-│   ├── statusline.sh        # ccusage statusline (Frappe palette)
-│   ├── agents/              # SSD pipeline agents (8 agents)
-│   └── skills/              # Flow skills (/flow, /flow-lite, /flow-verify)
-├── opencode/
-│   ├── opencode.json        # OpenCode config (MCPs, default agent)
-│   ├── agents/              # SSD pipeline + domain specialist agents
-│   └── skills/              # gstack skills (35+) and flow skills
+│   └── config
 ├── gemini/
-│   ├── settings.json        # Gemini CLI settings
-│   └── antigravity/         # Antigravity MCP config
+│   ├── settings.json
+│   └── antigravity/
 ├── iterm2/
-│   └── colors/              # Color presets (.itermcolors)
-├── starship.toml            # Starship prompt config
-├── install.sh               # Symlink installer
-├── AGENTS.md                # Guidelines for AI coding agents
-├── CLAUDE.md                # Guidelines for Claude Code
-└── README.md                # This file
+│   └── colors/
+├── starship.toml
+├── install.sh
+├── AGENTS.md
+├── CLAUDE.md
+└── README.md
 
-~/.tmux.conf                 # Symlink → dotfiles/.tmux.conf
-~/.claude/                   # Symlinks → dotfiles/claude/
-~/.gemini/                   # Symlinks → dotfiles/gemini/
+# install.sh creates these symlinks:
+~/.config/opencode              → dotfiles/ai/opencode
+~/.claude/settings.json         → dotfiles/ai/claude/settings.json
+~/.claude/CLAUDE.md             → dotfiles/ai/claude/CLAUDE.md
+~/.tmux.conf                    → dotfiles/.tmux.conf
+~/.gemini/                      → dotfiles/gemini/
 ```
 
 ---

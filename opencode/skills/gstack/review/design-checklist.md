@@ -1,1 +1,0 @@
-/Users/naranjax/.claude/skills/gstack/review/design-checklist.md
