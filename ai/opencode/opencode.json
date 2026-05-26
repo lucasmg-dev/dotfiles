@@ -17,6 +17,17 @@
     "datadog": {
       "type": "remote",
       "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp"
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true,
+      "headers": {
+        "CONTEXT7_API_KEY": "***REDACTED***"
+      }
     }
-  }
+  },
+  "plugin": [
+    "superpowers@git+https://github.com/obra/superpowers.git"
+  ]
 }
