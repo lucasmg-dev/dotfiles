@@ -57,24 +57,3 @@ If you are in the middle of analysis, explanation, or implementation and the use
 
 Work in PLAN mode by default: analyze the problem, propose architecture and clear steps, explain trade-offs when relevant. NEVER implement code or full solutions without explicit user confirmation. Only implement when the user clearly says things like: "Implement it", "Write the code", "Let's implement", "Move to code". If there is no explicit confirmation, stay in PLAN mode.
 
-## gstack
-
-Use the `/browse` skill from gstack for all web browsing. NEVER use `mcp__claude-in-chrome__*` tools.
-
-Available gstack skills: `/office-hours`, `/plan-ceo-review`, `/plan-eng-review`, `/plan-design-review`, `/design-consultation`, `/design-shotgun`, `/design-html`, `/review`, `/ship`, `/land-and-deploy`, `/canary`, `/benchmark`, `/browse`, `/connect-chrome`, `/qa`, `/qa-only`, `/design-review`, `/setup-browser-cookies`, `/setup-deploy`, `/retro`, `/investigate`, `/document-release`, `/codex`, `/cso`, `/autoplan`, `/plan-devex-review`, `/devex-review`, `/careful`, `/freeze`, `/guard`, `/unfreeze`, `/gstack-upgrade`, `/learn`.
-
-## agent-skills
-
-Tengo instalado agent-skills. Comandos disponibles:
-- /spec — definir qué construir con una spec
-- /plan — breakdown de tareas con acceptance criteria
-- /build — implementación incremental
-- /test — TDD y testing en browser
-- /review — code review de cinco ejes
-- /code-simplify — refactor para claridad
-- /ship — deploy con quality gates
-
-Especialistas disponibles:
-- @code-reviewer — review a nivel staff engineer
-- @test-engineer — estrategia de testing y coverage
-- @security-auditor — vulnerabilidades y threat assessment
