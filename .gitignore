@@ -46,5 +46,9 @@ iterm2/AppSupport/**
 !gemini/
 !gemini/**
 
+# AI shared skills/commands
+!ai/
+!ai/**
+
 # Install script
 !install.sh
