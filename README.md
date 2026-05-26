@@ -11,8 +11,8 @@ Personal dotfiles for a macOS (Apple Silicon) development environment with **Gho
 - **Fish Shell**: Smart shell with autosuggestions and fnm version switching
 - **Starship**: Fast prompt, Catppuccin Frappe palette
 - **LazyVim**: Neovim configuration framework, Catppuccin Frappe
-- **Claude Code**: AI coding assistant with SSD workflow and custom agents/skills
-- **OpenCode**: AI coding assistant with SSD workflow and gstack skills
+- **Claude Code**: AI coding assistant
+- **OpenCode**: AI coding assistant with shared skills and MCP integrations
 - **Gemini CLI**: Google Gemini CLI with antigravity MCP configuration
 
 ---
@@ -163,49 +163,38 @@ Fish detects Ghostty via `GHOSTTY_RESOURCES_DIR` and skips tmux if already insid
 
 ```
 dotfiles/
-├── ai/                          # SOURCE OF TRUTH for AI tools
-│   ├── claude/                  # Claude Code config (CLAUDE.md, settings.json, statusline.sh)
-│   ├── opencode/                # OpenCode config (opencode.json, agents/LucasG.md)
-│   ├── agents/
-│   │   └── shared/              # Tool-agnostic agent definitions
-│   ├── skills/
-│   │   ├── shared/              # Tool-agnostic skills
-│   │   ├── claude/              # Claude Code skills (flow, flow-lite, flow-verify)
-│   │   └── opencode/            # OpenCode specific skills
-│   └── commands/
-│       ├── shared/              # Tool-agnostic commands
-│       ├── claude/              # Claude Code specific commands
-│       └── opencode/            # OpenCode commands (flow, flow-lite, flow-verify)
 ├── fish/
-│   ├── config.fish
+│   ├── config.fish          # Main Fish config (PATH, tools, tmux auto-start)
 │   ├── conf.d/
-│   │   └── fnm.fish
-│   ├── functions/
-│   ├── completions/
-│   └── fish_plugins
+│   │   └── fnm.fish         # Auto Node version switching
+│   ├── functions/           # Custom Fish functions
+│   ├── completions/         # Auto-completions
+│   └── fish_plugins         # Fisher plugin list
 ├── nvim/
 │   └── lua/
-│       ├── config/
-│       └── plugins/
+│       ├── config/          # Neovim core config
+│       └── plugins/         # Plugin configurations
 ├── ghostty/
-│   └── config
+│   └── config               # Ghostty config
+├── opencode/
+│   ├── opencode.json        # OpenCode config (MCPs, default agent)
+│   └── skills/              # Skills (handoff, etc.)
+├── ai/
+│   └── skills/shared/       # Shared skills across tools (handoff)
 ├── gemini/
-│   ├── settings.json
-│   └── antigravity/
+│   ├── settings.json        # Gemini CLI settings
+│   └── antigravity/         # Antigravity MCP config
 ├── iterm2/
-│   └── colors/
-├── starship.toml
-├── install.sh
-├── AGENTS.md
-├── CLAUDE.md
-└── README.md
+│   └── colors/              # Color presets (.itermcolors)
+├── starship.toml            # Starship prompt config
+├── install.sh               # Symlink installer
+├── AGENTS.md                # Guidelines for AI coding agents
+├── CLAUDE.md                # Guidelines for Claude Code
+└── README.md                # This file
 
-# install.sh creates these symlinks:
-~/.config/opencode              → dotfiles/ai/opencode
-~/.claude/settings.json         → dotfiles/ai/claude/settings.json
-~/.claude/CLAUDE.md             → dotfiles/ai/claude/CLAUDE.md
-~/.tmux.conf                    → dotfiles/.tmux.conf
-~/.gemini/                      → dotfiles/gemini/
+~/.tmux.conf                 # Symlink → dotfiles/.tmux.conf
+~/.claude/                   # Symlinks → dotfiles/claude/
+~/.gemini/                   # Symlinks → dotfiles/gemini/
 ```
 
 ---
