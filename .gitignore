@@ -23,20 +23,17 @@ nvim/lazy-lock.json
 # Starship
 !starship.toml
 
-# Claude
-!claude/
-!claude/**
+# AI tools (source of truth)
+!ai/
+!ai/**
+ai/**/node_modules/
 
 # tmux
 !.tmux.conf
 !tmux/
 !tmux/**
 
-# opencode
-!opencode/
-!opencode/**
-opencode/node_modules/
-opencode/bun.lock
+
 
 # iTerm2
 !iterm2/
