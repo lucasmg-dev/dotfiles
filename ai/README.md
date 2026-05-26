@@ -31,10 +31,45 @@ ai/
 
 ## Skills (Superpowers)
 
-Sistema de workflows reutilizables para tareas no triviales. Se activan cuando la tarea tiene 3+ pasos, decisiones de arquitectura, o cambios multi-archivo.
+Usamos [Superpowers](https://github.com/obra/superpowers) como sistema de skills reutilizables para tareas no triviales. Se activan cuando la tarea tiene 3+ pasos, decisiones de arquitectura, o cambios multi-archivo.
 
 - `skills/shared/` — Skills agnósticas a plataforma (handoff, brainstorming, etc.)
 - `skills/opencode/` — Skills específicas de OpenCode
+
+### Instalación por plataforma
+
+**OpenCode CLI:**
+
+1. Agregar el plugin en `opencode.json`:
+   ```json
+   {
+     "plugin": [
+       "superpowers@git+https://github.com/obra/superpowers.git"
+     ]
+   }
+   ```
+2. Skills custom se linkean individualmente a `~/.agents/skills/`:
+   ```bash
+   ln -s /path/to/dotfiles/ai/skills/shared/nombre-skill ~/.agents/skills/nombre-skill
+   ```
+
+**Claude Code:**
+
+1. Instalar el plugin:
+   ```bash
+   claude mcp add superpowers -- npx -y @anthropic-ai/superpowers-cli
+   ```
+   O agregar manualmente en la config de Claude Code MCP.
+
+2. Agregar la sección de Superpowers en `CLAUDE.md` (ya incluida en este repo).
+
+**Antigravity CLI (agy):**
+
+1. Symlink del directorio completo de skills compartidas:
+   ```bash
+   mkdir -p ~/.gemini/antigravity-cli
+   ln -s /path/to/dotfiles/ai/skills/shared ~/.gemini/antigravity-cli/skills
+   ```
 
 ### Cuándo se activan
 
