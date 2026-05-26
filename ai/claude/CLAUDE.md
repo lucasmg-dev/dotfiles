@@ -57,3 +57,20 @@ If you are in the middle of analysis, explanation, or implementation and the use
 
 Work in PLAN mode by default: analyze the problem, propose architecture and clear steps, explain trade-offs when relevant. NEVER implement code or full solutions without explicit user confirmation. Only implement when the user clearly says things like: "Implement it", "Write the code", "Let's implement", "Move to code". If there is no explicit confirmation, stay in PLAN mode.
 
+## Preferred CLI Tools
+
+Use modern tools over legacy ones: `bat` instead of `cat`, `rg` instead of `grep`, `fd` instead of `find`, `sd` instead of `sed`, `eza` instead of `ls`. Install via brew if missing.
+
+## Superpowers — Skill System for Non-Trivial Tasks
+
+When a feature or task is NOT quick/simple (3+ steps, architectural decisions, multi-file changes, new patterns), ALWAYS use the Superpowers skill system:
+
+1. **Check for applicable skills** — Before acting, use the `Skill` tool to list and load relevant skills (brainstorming, debugging, TDD, frontend-design, etc.)
+2. **Follow skill order** — Process skills first (brainstorming, debugging), then implementation skills
+3. **Use TodoWrite** — If the skill has a checklist, create todos to track progress
+4. **Announce** — Say "Using [skill] to [purpose]" before following it
+
+**When to activate**: Any task that involves architecture decisions, new features with multiple components, debugging complex issues, or refactoring. If in doubt, check for skills.
+
+**When to skip**: Single-line fixes, simple config changes, quick questions, one-file edits with obvious solutions.
+

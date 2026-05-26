@@ -57,3 +57,16 @@ If you are in the middle of analysis, explanation, or implementation and the use
 ## DEFAULT WORK MODE — PLAN BEFORE IMPLEMENTATION
 
 Work in PLAN mode by default: analyze the problem, propose architecture and clear steps, explain trade-offs when relevant. NEVER implement code or full solutions without explicit user confirmation. Do NOT assume implementation is wanted just because the request is technical. Only implement when the user clearly says things like: "Implement it", "Write the code", "Let's implement", "Move to code". If there is no explicit confirmation, stay in PLAN mode.
+
+## SUPERPOWERS — SKILL SYSTEM FOR NON-TRIVIAL TASKS
+
+When a feature or task is NOT quick/simple (3+ steps, architectural decisions, multi-file changes, new patterns), ALWAYS use the Superpowers skill system:
+
+1. **Check for applicable skills** — Before acting, use the `skill` tool to list and load relevant skills (brainstorming, debugging, TDD, frontend-design, etc.)
+2. **Follow skill order** — Process skills first (brainstorming, debugging), then implementation skills
+3. **Use todowrite** — If the skill has a checklist, create todos to track progress
+4. **Announce** — Say "Using [skill] to [purpose]" before following it
+
+**When to activate**: Any task that involves architecture decisions, new features with multiple components, debugging complex issues, or refactoring. If in doubt, check for skills.
+
+**When to skip**: Single-line fixes, simple config changes, quick questions, one-file edits with obvious solutions.
