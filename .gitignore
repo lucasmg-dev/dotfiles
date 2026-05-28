@@ -10,6 +10,9 @@
 # Fish
 !fish/
 !fish/**
+# Secretos de Fish — NUNCA versionar (last-match gana sobre !fish/**)
+fish/conf.d/secrets.fish
+fish/fish_variables
 
 # Ghostty
 !ghostty/
