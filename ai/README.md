@@ -76,6 +76,17 @@ agy no tiene sistema de plugins, así que las skills van como archivos en disco 
 
 > El dir `~/.gemini/antigravity-cli/skills/` debe ser una **carpeta real** (no un symlink al repo): ahí conviven las superpowers descargadas con los symlinks a tus skills custom. `install.sh` migra el symlink viejo automáticamente.
 
+### UI/UX Pro Max (skill de terceros)
+
+[ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) no se copia a mano: su CLI oficial (`uipro-cli`) **ensambla** la skill por plataforma (SKILL.md templado + scripts + data). El script la instala en los **3 agentes** a la vez (Claude, OpenCode, agy), ensamblando con el CLI y copiando a cada dir real. Re-correr actualiza:
+
+```bash
+ai/skills/install-ui-ux-pro-max.sh        # latest
+UIPRO_VERSION=2.5.0 ai/skills/install-ui-ux-pro-max.sh   # pinneado
+```
+
+Requiere `npx` (Node.js).
+
 ### Cuándo se activan
 
 - Arquitectura, features complejas, debugging, refactoring.
