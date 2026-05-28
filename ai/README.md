@@ -71,10 +71,10 @@ agy no tiene sistema de plugins, así que las skills van como archivos en disco 
    ```bash
    ai/skills/install-superpowers-agy.sh
    ```
-2. Skills custom (handoff, review-comments) — symlink individual:
-   ```bash
-   ln -s /path/to/dotfiles/ai/skills/shared/<skill> ~/.gemini/antigravity-cli/skills/<skill>
-   ```
+2. Skills custom (handoff, review-comments) — las symlinkea `./install.sh` automáticamente.
+   Manual: `ln -s /path/to/dotfiles/ai/skills/shared/<skill> ~/.gemini/antigravity-cli/skills/<skill>`
+
+> El dir `~/.gemini/antigravity-cli/skills/` debe ser una **carpeta real** (no un symlink al repo): ahí conviven las superpowers descargadas con los symlinks a tus skills custom. `install.sh` migra el symlink viejo automáticamente.
 
 ### Cuándo se activan
 
@@ -103,7 +103,10 @@ tools:
 
 ### Nueva skill compartida
 
-Crear directorio en `skills/shared/nombre-skill/` con el contenido del workflow.
+1. Crear el directorio en `skills/shared/<nombre-skill>/` con su `SKILL.md` (y archivos de soporte si hace falta).
+2. Re-correr `./install.sh` para **cascadear los symlinks** a los tres agentes: `~/.claude/skills/`, `~/.agents/skills/` (OpenCode) y `~/.gemini/antigravity-cli/skills/` (agy).
+
+> Sin esos symlinks la skill vive en el repo pero **no llega a ningún agente**. `install.sh` los crea por vos; si agregás una skill a mano, acordate de linkearla en los tres lugares.
 
 ### Nueva plataforma
 

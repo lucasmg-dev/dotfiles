@@ -77,14 +77,25 @@ for file in "${CLAUDE_FILES[@]}"; do
     link_item "$DOTFILES_DIR/ai/claude/$file" "$HOME/.claude/$file"
 done
 
-# Skills: merge ai/skills/{opencode,shared}/<name>/ → AMBOS ~/.agents/skills/ Y ~/.claude/skills/
-mkdir -p "$HOME/.agents/skills" "$HOME/.claude/skills"
+# Skills: merge ai/skills/{opencode,shared}/<name>/ → symlinks en los 3 agentes:
+# ~/.agents/skills/ (OpenCode), ~/.claude/skills/ (Claude) y
+# ~/.gemini/antigravity-cli/skills/ (agy). Sin estos symlinks la skill no
+# cascadea. Las skills de Superpowers para agy van aparte (no tiene plugin):
+# ver ai/skills/install-superpowers-agy.sh
+# Migración: si agy tenía el dir de skills linkeado entero al repo, lo removemos
+# para usar carpeta real (ahí conviven superpowers descargadas + symlinks custom).
+if [ -L "$HOME/.gemini/antigravity-cli/skills" ]; then
+    rm "$HOME/.gemini/antigravity-cli/skills"
+    echo "  Removed legacy symlink: $HOME/.gemini/antigravity-cli/skills"
+fi
+mkdir -p "$HOME/.agents/skills" "$HOME/.claude/skills" "$HOME/.gemini/antigravity-cli/skills"
 for src_dir in "$DOTFILES_DIR/ai/skills/opencode" "$DOTFILES_DIR/ai/skills/shared"; do
     for skill in "$src_dir"/*/; do
         [ -d "$skill" ] || continue
         name=$(basename "$skill")
         link_item "${skill%/}" "$HOME/.agents/skills/$name"
         link_item "${skill%/}" "$HOME/.claude/skills/$name"
+        link_item "${skill%/}" "$HOME/.gemini/antigravity-cli/skills/$name"
     done
 done
 

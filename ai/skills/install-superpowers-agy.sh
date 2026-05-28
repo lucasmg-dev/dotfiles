@@ -16,6 +16,15 @@ command -v git >/dev/null 2>&1 || {
     exit 1
 }
 
+# Guard: agy necesita una carpeta REAL acá. Si DEST es un symlink (p.ej.
+# apuntando al repo), copiar acá contaminaría el repo con las skills. Abortar.
+if [ -L "$DEST" ]; then
+    echo "Error: $DEST es un symlink -> $(readlink "$DEST")" >&2
+    echo "agy necesita una carpeta REAL acá, no un symlink al repo." >&2
+    echo "Arreglalo:  rm \"$DEST\" && mkdir -p \"$DEST\"  y re-corré el script." >&2
+    exit 1
+fi
+
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 
