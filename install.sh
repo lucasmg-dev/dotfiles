@@ -11,7 +11,7 @@ CONFIG_FILES=(starship.toml)
 HOME_FILES=(.tmux.conf)
 
 # Claude Code: archivos dentro de ~/.claude/ (runtime dir, no se puede symlinkar entero)
-CLAUDE_FILES=(settings.json CLAUDE.md)
+CLAUDE_FILES=(settings.json CLAUDE.md statusline-command.sh)
 
 # Gemini CLI: archivos/carpetas dentro de ~/.gemini/
 GEMINI_ITEMS=(settings.json antigravity)
