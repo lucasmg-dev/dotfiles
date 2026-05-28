@@ -14,7 +14,8 @@ HOME_FILES=(.tmux.conf)
 CLAUDE_FILES=(settings.json CLAUDE.md statusline-command.sh)
 
 # Gemini CLI: archivos/carpetas dentro de ~/.gemini/
-GEMINI_ITEMS=(settings.json antigravity)
+# antigravity/ NO se symlinkea: es estado de runtime (conversaciones, brain, etc.)
+GEMINI_ITEMS=(settings.json)
 
 link_item() {
     local src="$1" dest="$2"

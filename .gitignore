@@ -48,6 +48,8 @@ iterm2/AppSupport/**
 # Gemini
 !gemini/
 !gemini/**
+# Estado de runtime de Antigravity — historial/sesiones privadas, NUNCA versionar
+gemini/antigravity/
 
 # AI shared skills/commands
 !ai/
