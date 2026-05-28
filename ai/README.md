@@ -65,10 +65,15 @@ Usamos [Superpowers](https://github.com/obra/superpowers) como sistema de skills
 
 **Antigravity CLI (agy):**
 
-1. Symlink del directorio completo de skills compartidas:
+agy no tiene sistema de plugins, así que las skills van como archivos en disco en `~/.gemini/antigravity-cli/skills/`.
+
+1. Skills de Superpowers — correr el script (clona upstream y las instala; re-correr actualiza a la última versión):
    ```bash
-   mkdir -p ~/.gemini/antigravity-cli
-   ln -s /path/to/dotfiles/ai/skills/shared ~/.gemini/antigravity-cli/skills
+   ai/skills/install-superpowers-agy.sh
+   ```
+2. Skills custom (handoff, review-comments) — symlink individual:
+   ```bash
+   ln -s /path/to/dotfiles/ai/skills/shared/<skill> ~/.gemini/antigravity-cli/skills/<skill>
    ```
 
 ### Cuándo se activan
