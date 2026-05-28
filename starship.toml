@@ -1,53 +1,50 @@
-add_newline = false
-command_timeout = 1000
+"$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-$directory$git_branch$git_status$nodejs$python$rust$cmd_duration
-$character
-"""
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$python\
+$character"""
 
-# --- Prompt character ---
-[character]
-success_symbol = "[>](bold #a6d189)"
-error_symbol = "[>](bold #e78284)"
-vicmd_symbol = "[<](bold #a6d189)"
-
-# --- Directory ---
 [directory]
-style = "bold #8caaee"
-format = "[$path]($style)"
-truncation_length = 3
+style = "blue"
 
-# --- Git ---
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+
 [git_branch]
-format = "[ $symbol$branch]($style)"
-style = "#ca9ee6"
-symbol = "git "
+format = "[$branch]($style)"
+style = "bright-black"
 
 [git_status]
-format = "[$all_status$ahead_behind]($style)"
-style = "#e5c890"
-conflicted = "!"
-ahead = " ahead"
-behind = " behind"
-diverged = " diverged"
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
 
-# --- Runtimes ---
-[nodejs]
-symbol = "node "
-style = "#a6d189"
-format = "[ $symbol($version)]($style)"
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
 
 [python]
-symbol = "py "
-style = "#81c8be"
-format = "[ $symbol($version)]($style)"
-
-[rust]
-symbol = "rs "
-style = "#ef9f76"
-format = "[ $symbol($version)]($style)"
-
-# --- Command duration ---
-[cmd_duration]
-style = "#c6d0f5"
+format = "[$virtualenv]($style) "
+style = "bright-black"
+detect_extensions = []
+detect_files = []
