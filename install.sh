@@ -15,7 +15,7 @@ CLAUDE_FILES=(settings.json CLAUDE.md statusline-command.sh)
 
 # Gemini CLI: archivos/carpetas dentro de ~/.gemini/
 # antigravity/ NO se symlinkea: es estado de runtime (conversaciones, brain, etc.)
-GEMINI_ITEMS=(settings.json)
+GEMINI_ITEMS=(settings.json GEMINI.md)
 
 link_item() {
     local src="$1" dest="$2"
@@ -104,6 +104,26 @@ mkdir -p "$HOME/.gemini"
 for item in "${GEMINI_ITEMS[@]}"; do
     link_item "$DOTFILES_DIR/gemini/$item" "$HOME/.gemini/$item"
 done
+
+# Claude Code: MCP servers y plugins viven en runtime (~/.claude.json,
+# ~/.claude/plugins/), NO versionables. Se registran acá de forma idempotente.
+# Gemini/OpenCode llevan sus MCPs en config versionada; Claude necesita este paso.
+if command -v claude >/dev/null 2>&1; then
+    # Playwright MCP — los "ojos" para QA visual
+    if ! claude mcp get playwright >/dev/null 2>&1; then
+        claude mcp add -s user playwright -- npx @playwright/mcp@latest
+        echo "  Claude MCP: playwright registrado"
+    fi
+    # impeccable — plugin de diseño/QA (marketplace de terceros, no versionable)
+    claude plugin marketplace list 2>/dev/null | rg -qi 'pbakaus/impeccable' || \
+        claude plugin marketplace add pbakaus/impeccable
+    claude plugin list 2>/dev/null | rg -qi 'impeccable' || \
+        { claude plugin install impeccable@impeccable && echo "  Claude plugin: impeccable instalado"; }
+    # Superpowers — skill system (marketplace oficial, ya pre-conocido)
+    # enabledPlugins en settings.json lo HABILITA, pero no lo descarga: hace falta este install.
+    claude plugin list 2>/dev/null | rg -qi 'superpowers' || \
+        { claude plugin install superpowers@claude-plugins-official && echo "  Claude plugin: superpowers instalado"; }
+fi
 
 echo ""
 echo "Done!"

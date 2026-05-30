@@ -74,3 +74,15 @@ When a feature or task is NOT quick/simple (3+ steps, architectural decisions, m
 
 **When to skip**: Single-line fixes, simple config changes, quick questions, one-file edits with obvious solutions.
 
+## Visual QA — Evidence Before Claims
+
+When doing visual QA on frontend (HTML/CSS/UI), NEVER claim something "looks right", "is fixed", or "renders well" from reading code alone. Reading code is NOT seeing the result. Asserting visual correctness without rendering is hallucination.
+
+Mandatory loop before ANY visual claim:
+
+1. **Audit the code** — run `impeccable audit <target>` for structured, scored findings (a11y, responsive, theming, anti-patterns, P0–P3).
+2. **See the render** — use the Playwright MCP to open the page and capture screenshots at 375 / 768 / 1024 / 1440px. SHOW the screenshot in the conversation.
+3. **Only then judge** — reference the captured evidence. No screenshot shown = no claim made.
+
+For live element redesign (not QA), use `impeccable live` instead.
+

@@ -41,6 +41,10 @@
     "jira": {
       "url": "https://mcp.atlassian.com/v1/mcp/authv2",
       "type": "http"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
     }
   },
   "experimental": {
