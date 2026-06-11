@@ -1,9 +1,10 @@
 {
   "general": {
-    "defaultApprovalMode": "auto_edit"
+    "defaultApprovalMode": "auto_edit",
+    "topicUpdateNarration": true
   },
   "ui": {
-    "theme": "GitHub",
+    "theme": "Default",
     "inlineThinkingMode": "full",
     "footer": {
       "items": [
@@ -13,7 +14,8 @@
         "model-name",
         "context-used",
         "quota"
-      ]
+      ],
+      "hideContextPercentage": true
     }
   },
   "model": {
@@ -44,7 +46,9 @@
     },
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp@latest"]
+      "args": [
+        "@playwright/mcp@latest"
+      ]
     }
   },
   "experimental": {
