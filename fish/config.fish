@@ -64,3 +64,6 @@ set -gx PATH "/Users/naranjax/.local/bin" $PATH
 
 # Added by Antigravity IDE
 fish_add_path /Users/naranjax/.antigravity-ide/antigravity-ide/bin
+
+# Added by Devin
+fish_add_path /Users/naranjax/.codeium/windsurf/bin
