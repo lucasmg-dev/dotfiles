@@ -1,10 +1,10 @@
 font-family = "IosevkaTerm Nerd Font Mono"
 font-size = 18
 
-theme = Catppuccin Frappe
+theme = Rose Pine
 
 # Window
-background-opacity = 0.95
+background-opacity = 0.97
 background-blur-radius = 20
 
 window-decoration = true

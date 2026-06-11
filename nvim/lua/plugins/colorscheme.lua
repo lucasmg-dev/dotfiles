@@ -1,28 +1,20 @@
 return {
-  "catppuccin/nvim",
-  name = "catppuccin",
+  "rose-pine/neovim",
+  name = "rose-pine",
   lazy = false,
   priority = 1000,
   opts = {
-    flavour = "frappe",
-    transparent_background = false,
-    integrations = {
-      cmp = true,
-      gitsigns = true,
-      treesitter = true,
-      telescope = true,
-      mason = true,
-      which_key = true,
-      native_lsp = { enabled = true },
-      notify = true,
-      mini = { enabled = true },
-      lsp_trouble = true,
-      indent_blankline = { enabled = true },
-      flash = true,
+    variant = "main", -- variante dark clásica. Otras: "moon" (dark suave), "dawn" (light).
+    dark_variant = "main",
+    styles = {
+      bold = true,
+      italic = true,
+      transparency = false,
     },
   },
   config = function(_, opts)
-    require("catppuccin").setup(opts)
-    vim.cmd.colorscheme("catppuccin-frappe")
+    require("rose-pine").setup(opts)
+    vim.o.background = "dark"
+    vim.cmd.colorscheme("rose-pine")
   end,
 }
