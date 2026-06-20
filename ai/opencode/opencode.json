@@ -28,8 +28,21 @@
     },
     "playwright": {
       "type": "local",
-      "command": ["npx", "@playwright/mcp@latest"],
+      "command": [
+        "npx",
+        "@playwright/mcp@latest"
+      ],
       "enabled": true
+    },
+    "harness": {
+      "type": "local",
+      "command": [
+        "npx",
+        "harness-mcp-v2"
+      ],
+      "environment": {
+        "HARNESS_API_KEY": "{env:HARNESS_API_KEY}"
+      }
     }
   },
   "plugin": [

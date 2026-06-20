@@ -4,14 +4,14 @@
 #   L2: 5h: NN% / HH:MM                                        (5-hour rate limit + reset time)
 input=$(cat)
 
-# --- Catppuccin Mocha palette (truecolor) ---
-C_BLUE=$'\033[38;2;137;180;250m'    # project
-C_MAUVE=$'\033[38;2;203;166;247m'   # branch
-C_TEXT=$'\033[38;2;205;214;244m'    # model
-C_GREEN=$'\033[38;2;166;227;161m'   # bar <50% / reset time
-C_YELLOW=$'\033[38;2;249;226;175m'  # bar 50-80%
-C_RED=$'\033[38;2;243;139;168m'     # bar >=80%
-C_DIM=$'\033[38;2;108;112;134m'     # separators / empty bar
+# --- Rosé Pine (main) palette (truecolor) ---
+C_BLUE=$'\033[38;2;156;207;216m'    # project   (foam  #9ccfd8)
+C_MAUVE=$'\033[38;2;196;167;231m'   # branch    (iris  #c4a7e7)
+C_TEXT=$'\033[38;2;224;222;244m'    # model     (text  #e0def4)
+C_GREEN=$'\033[38;2;49;116;143m'    # bar <50% / reset time (pine #31748f)
+C_YELLOW=$'\033[38;2;246;193;119m'  # bar 50-80% (gold  #f6c177)
+C_RED=$'\033[38;2;235;111;146m'     # bar >=80%  (love  #eb6f92)
+C_DIM=$'\033[38;2;110;106;134m'     # separators / empty bar (muted #6e6a86)
 C_BOLD=$'\033[1m'
 C_RST=$'\033[0m'
 

@@ -1,14 +1,13 @@
-font-family = "IosevkaTerm Nerd Font Mono"
-font-size = 18
+font-family = "Monaspace Argon NF"
+font-size = 16
 
-theme = Catppuccin Frappe
+theme = GitHub Dark Default
 
 # Window
-background-opacity = 0.95
-background-blur-radius = 20
+# background-blur-radius = 20
 
 window-decoration = true
-window-padding-color = extend
+#window-padding-color = extend
 window-step-resize = false
 window-padding-balance = true
 window-height = 100
